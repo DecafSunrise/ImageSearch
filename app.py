@@ -14,13 +14,15 @@ model, preprocess = clip.load('ViT-B/32', device)
 with open('embeddings.pkl','rb') as f:
     image_embeddings = pickle.load(f)
 
+st.set_page_config(layout="wide")
+
 st.header('Image Search App')
 search_term = 'a picture of ' + st.text_input('Search: ')
 search_embedding = model.encode_text(clip.tokenize(search_term).to(device)).cpu().detach().numpy()
 
 st.sidebar.header('App Settings')
-top_number = st.sidebar.slider('Number of Search Results', min_value=1, max_value=30)
-picture_width = st.sidebar.slider('Picture Width', min_value=100, max_value=500)
+top_number = st.sidebar.slider('Number of Search Results', min_value=5, max_value=300, value=50)
+picture_width = st.sidebar.slider('Picture Width', min_value=100, max_value=500, value=250)
 
 df_rank = pd.DataFrame(columns=['image_path','sim_score'])
 
@@ -43,9 +45,12 @@ for i in range(top_number):
     if i % 3 == 0:
         with col1:
             st.image(image = Image.open(df_result.loc[i,'image_path']),width=picture_width)
+            st.caption(round(df_result.loc[i,'sim_score'],3))
     elif i % 3 == 1:
         with col2:
             st.image(image = Image.open(df_result.loc[i,'image_path']),width=picture_width)
+            st.caption(round(df_result.loc[i,'sim_score'],3))
     elif i % 3 == 2:
         with col3:
             st.image(image = Image.open(df_result.loc[i,'image_path']),width=picture_width)
+            st.caption(round(df_result.loc[i,'sim_score'],3))
