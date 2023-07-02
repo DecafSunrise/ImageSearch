@@ -1,4 +1,5 @@
 # ImageSearch
+![image](https://github.com/DecafSunrise/ImageSearch/assets/36832027/a390b613-0f15-498f-b986-e920c321d7c3)
 
 I found [this neat article](https://python.plainenglish.io/creating-an-image-search-app-in-python-using-clip-and-streamlit-854933d742ca) the other day, and figured it could be a good way to wade through a collection of ~thousands of pictures I've saved over the last decade. 
 
