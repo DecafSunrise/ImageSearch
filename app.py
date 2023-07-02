@@ -5,6 +5,8 @@ import torch
 from sklearn.metrics.pairwise import cosine_similarity
 import pickle
 
+from PIL import Image
+
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model, preprocess = clip.load('ViT-B/32', device)
 
@@ -40,10 +42,10 @@ df_result = df_rank.head(top_number)
 for i in range(top_number):
     if i % 3 == 0:
         with col1:
-            st.image(df_result.loc[i,'image_path'],width=picture_width)
+            st.image(image = Image.open(df_result.loc[i,'image_path']),width=picture_width)
     elif i % 3 == 1:
         with col2:
-            st.image(df_result.loc[i,'image_path'],width=picture_width)
+            st.image(image = Image.open(df_result.loc[i,'image_path']),width=picture_width)
     elif i % 3 == 2:
         with col3:
-            st.image(df_result.loc[i,'image_path'],width=picture_width)
+            st.image(image = Image.open(df_result.loc[i,'image_path']),width=picture_width)

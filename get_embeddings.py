@@ -42,7 +42,7 @@ if __name__ == '__main__':
     # folder_path = '<Enter folder location with your images here>'
     folder_path = os.getenv('folder_path')
     
-    image_list = [folder_path + file for file in os.listdir(folder_path)]
+    image_list = [os.path.join(folder_path, file) for file in os.listdir(folder_path)]
         
     print('Attempting to open images...')
     cleaned_image_list = []
